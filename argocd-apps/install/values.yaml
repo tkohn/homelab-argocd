@@ -1,19 +1,4 @@
-## ArgoCD configuration
-## Ref: https://github.com/argoproj/argo-cd
-##
-## Server
-server:
-  ## ArgoCD config
-  ## reference https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cm.yaml
-  configEnabled: true
-  config:
-    repositories: |
-      - type: git
-        url: https://github.com/tkohn/homelab-argocd.git
-      - name: argo-helm
-        type: helm
-        url: https://argoproj.github.io/argo-helm
-  additionalApplications: 
+applications:
     - name: argocd
       namespace: argocd
       destination:
@@ -24,7 +9,7 @@ server:
         helm:
           version: v3
           valueFiles:
-          - values-server.yaml
+          - values.yaml
         path: argocd
         repoURL: https://github.com/tkohn/homelab-argocd.git
         targetRevision: HEAD
@@ -65,7 +50,7 @@ server:
         automated:
           selfHeal: true
           prune: true
-  additionalProjects: 
+projects: 
   - name: argocd
     namespace: argocd
     additionalLabels: {}

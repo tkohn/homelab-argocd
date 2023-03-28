@@ -1,0 +1,9 @@
+server:
+  configEnabled: true
+  config:
+    repositories: |
+      - type: git
+        url: https://github.com/tkohn/homelab-argocd.git
+      - name: argo-helm
+        type: helm
+        url: https://argoproj.github.io/argo-helm

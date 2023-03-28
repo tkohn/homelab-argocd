@@ -8,5 +8,5 @@
     --install argocd ./argocd \
     --namespace=argocd \
     --create-namespace \
-    -f values-server.yaml
+    -f argocd/values-server.yaml
 ```
