@@ -9,7 +9,7 @@ applications:
         helm:
           version: v3
           valueFiles:
-          - values.yaml
+          - install/values.yaml
         path: argocd
         repoURL: https://github.com/tkohn/homelab-argocd.git
         targetRevision: HEAD
@@ -23,33 +23,16 @@ applications:
         server: https://kubernetes.default.svc
       project: argocd
       source:
+        helm:
+          version: v3
+          valueFiles:
+          - install/values.yaml
         path: argocd-apps
         repoURL: https://github.com/tkohn/homelab-argocd.git
         targetRevision: HEAD
-        directory:
-          recurse: true
-          jsonnet: {}
       syncPolicy:
-        automated:
-          selfHeal: true
-          prune: true
-    - name: argocd-app-projects
-      namespace: argocd
-      destination:
-        namespace: argocd
-        server: https://kubernetes.default.svc
-      project: argocd
-      source:
-        path: argocd-app-projects
-        repoURL: https://github.com/tkohn/homelab-argocd.git
-        targetRevision: HEAD
-        directory:
-          recurse: true
-          jsonnet: {}
-      syncPolicy:
-        automated:
-          selfHeal: true
-          prune: true
+        syncOptions:
+        - CreateNamespace=true
 projects: 
   - name: argocd
     namespace: argocd

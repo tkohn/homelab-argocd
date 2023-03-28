@@ -1,2 +1,5 @@
 argo-cd/install/Chart.lock
 argo-cd/install/charts
+
+argocd-apps/install/Chart.lock
+argocd-apps/install/charts
